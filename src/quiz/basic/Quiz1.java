@@ -106,7 +106,29 @@ public class Quiz1 {
 		List<ProductImage> images = getProductImageList();
 
 		List<Product> products = new ArrayList<>();
-		// TODO Add your logic below here
+		for (int i = 0; i < infos.size() - 1; i++) {
+			String productCode = infos.get(i).code;
+			String productName = infos.get(i).name;
+			ProductStock productStock = new ProductStock("",0);
+			ProductImage[] productImages = new ProductImage[2];
+
+			for (int s = 0; s < stocks.size() - 1; s++) {
+				ProductStock stock = stocks.get(s);
+				if(stock.productCode.equals(productCode)){
+					productStock = stock;
+				}
+			}
+
+			int counterImages = 0;
+			for (int m = 0; m < images.size() - 1; m++){
+				ProductImage image = images.get(m);
+				if(image.productCode.equals(productCode)){
+					productImages[counterImages] = image;
+					counterImages++;
+				}
+			}
+			products.add(new Product(productCode, productName, productStock, productImages));
+		}
 
 		return products;
 	}
