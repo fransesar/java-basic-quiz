@@ -109,7 +109,7 @@ public class Quiz1 {
 			String productCode = infos.get(i).code;
 			String productName = infos.get(i).name;
 			ProductStock productStock = new ProductStock("", 0);
-			ProductImage[] productImages = new ProductImage[2];
+			ArrayList<ProductImage> productImages = new ArrayList<>();
 
 			for (int s = 0; s < stocks.size(); s++) {
 				ProductStock stock = stocks.get(s);
@@ -118,15 +118,19 @@ public class Quiz1 {
 				}
 			}
 
-			int counterImages = 0;
 			for (int m = 0; m < images.size(); m++) {
 				ProductImage image = images.get(m);
 				if (image.productCode.equals(productCode)) {
-					productImages[counterImages] = image;
-					counterImages++;
+					productImages.add(image);
 				}
 			}
-			products.add(new Product(productCode, productName, productStock, productImages));
+
+			ProductImage[] convertedProductImages = new ProductImage[productImages.size()];
+			for(int c = 0; c < productImages.size(); c++){
+				convertedProductImages[c] = productImages.get(c);
+			}
+
+			products.add(new Product(productCode, productName, productStock, convertedProductImages));
 		}
 
 		return products;
