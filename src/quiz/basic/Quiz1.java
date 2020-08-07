@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Quiz1 {
-
 	class ProductInfo {
 		final String code;
 		final String name;
@@ -106,23 +105,23 @@ public class Quiz1 {
 		List<ProductImage> images = getProductImageList();
 
 		List<Product> products = new ArrayList<>();
-		for (int i = 0; i < infos.size() - 1; i++) {
+		for (int i = 0; i < infos.size(); i++) {
 			String productCode = infos.get(i).code;
 			String productName = infos.get(i).name;
-			ProductStock productStock = new ProductStock("",0);
+			ProductStock productStock = new ProductStock("", 0);
 			ProductImage[] productImages = new ProductImage[2];
 
-			for (int s = 0; s < stocks.size() - 1; s++) {
+			for (int s = 0; s < stocks.size(); s++) {
 				ProductStock stock = stocks.get(s);
-				if(stock.productCode.equals(productCode)){
+				if (stock.productCode.equals(productCode)) {
 					productStock = stock;
 				}
 			}
 
 			int counterImages = 0;
-			for (int m = 0; m < images.size() - 1; m++){
+			for (int m = 0; m < images.size(); m++) {
 				ProductImage image = images.get(m);
-				if(image.productCode.equals(productCode)){
+				if (image.productCode.equals(productCode)) {
 					productImages[counterImages] = image;
 					counterImages++;
 				}
@@ -144,17 +143,17 @@ public class Quiz1 {
 		}
 		for (Product product : products) {
 			switch (product.code) {
-			case "code1":
-				validateItem(product, 1);
-				break;
-			case "code2":
-				validateItem(product, 2);
-				break;
-			case "code3":
-				validateItem(product, 3);
-				break;
-			default:
-				throw new Exception("Err-02");
+				case "code1":
+					validateItem(product, 1);
+					break;
+				case "code2":
+					validateItem(product, 2);
+					break;
+				case "code3":
+					validateItem(product, 3);
+					break;
+				default:
+					throw new Exception("Err-02");
 			}
 		}
 	}
